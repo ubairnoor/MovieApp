@@ -1,4 +1,4 @@
-import React from 'react';
+import    React,{ useState } from 'react';
 import {Text,View} from 'react-native';
 import axios from 'axios';
 
@@ -14,15 +14,15 @@ const App = () =>{
   // THe issue is that tjhe title is set after the template got initialized.
   // We cannot use Normal Variable we use React State.
   //  
-
-
-  let title = 'Movie Name'
+  const [ movie ,setMovie] = useState(''); 
   getPopulsarMovies().then(movies => {
-    title = movies[0].original_title;
+    setMovie(movies[0]);
+ 
   });
   return (
     <View>
-       <Text>{title}</Text>
+       <Text>Movie Title: {movie.original_title}</Text>
+       <Text>Released On: {movie.release_date}</Text>
     </View>
   )
 }
