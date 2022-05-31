@@ -2,7 +2,7 @@ import    React,{ useState ,useEffect} from 'react';
 import { Text , View} from 'react-native';
 import axios from 'axios';
 
-const getPopulsarMovies = async () =>{
+const getPopularMovies = async () =>{
   const Resp =  await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=283bf3f22f7ce6d2d1f9043a8b429b91')
 // console.log(JSON.stringify(Resp.data.results, null, 2))
     return Resp.data.results;
@@ -24,7 +24,7 @@ const App = () =>{
   const [ movie ,setMovie] = useState(''); 
   const [ error, setError] = useState(false);
   useEffect(()=>{
-    getPopulsarMovies().then(movies => {
+    getPopularMovies().then(movies => {
       setMovie(movies[0]);
     }).catch(err => {
       setError(err);
