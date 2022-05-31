@@ -1,12 +1,8 @@
 import    React,{ useState ,useEffect} from 'react';
 import { Text , View} from 'react-native';
 import axios from 'axios';
+import {getPopularMovies,getUpcomingMovies} from './services/services'
 
-const getPopularMovies = async () =>{
-  const Resp =  await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=283bf3f22f7ce6d2d1f9043a8b429b91')
-// console.log(JSON.stringify(Resp.data.results, null, 2))
-    return Resp.data.results;
-}
 
 const App = () =>{  
   // GetPopularMovie() is returning a promise and we use .then() callback function get Get Data.
@@ -21,7 +17,7 @@ const App = () =>{
   //
 // To catch the error we use Catch to  get Error from API.
 
-  const [ movie ,setMovie] = useState(''); 
+  const [ movie ,setMovie] =  useState(''); 
   const [ error, setError] = useState(false);
   useEffect(()=>{
     getPopularMovies().then(movies => {
@@ -34,7 +30,7 @@ const App = () =>{
     <View>
        <Text>Movie Title:  {movie.original_title}</Text>
        <Text>Released On:  {movie.release_date}</Text>
-     { error && <Text style={{ color:'red'}}> Error in the Server. </Text>  }
+     { error && <Text style={{ color:'red'}}> Error in the Server. </Text>}
     </View>
   )
 }
