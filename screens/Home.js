@@ -1,14 +1,24 @@
 import    React,{ useState ,useEffect} from 'react';
 import { Text , View} from 'react-native';
-import {getPopularMovies} from '../services/services'
-
+import {getPopularMovies,getUpcommingMovies} from '../services/services'
+import { SliderBox } from "react-native-image-slider-box";
 const Home = () => {
 
-    const [ movie ,setMovie] =  useState(''); 
+    const [ movieImages ,setMovieImages] =  useState(''); 
 
     const [ error, setError] = useState(false);
     
     useEffect(()=>{
+      getUpcommingMovies().then(movies =>{
+        const moviesImagesArray = [];
+        movies.forEach(movie =>{
+          moviesImagesArray.push('https://image.tmdb.org/t/p/w500'+movie.poster_path)
+        })
+
+        setMovieImages(moviesImagesArray);
+      }).catch(err => {
+        setError(err);
+      });
         getPopularMovies().then(movies => {
         setMovie(movies[0]);
       }).catch(err => {
@@ -18,10 +28,7 @@ const Home = () => {
 
     return (
         <View>
-        <Text>Movie Title:  {movie.original_title}</Text>
-        <Text>Released On:  {movie.release_date}</Text>
-      {error && <Text style={{ color:'red'}} > 
-      Error in the Server. </Text>}
+    <SliderBox images={movieImages} />
      </View>
     );
 }

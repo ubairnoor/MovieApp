@@ -11,10 +11,7 @@ const App = () =>{
   // Important 
   //>> After we are using useState our CPU is going out of resourse to get rid off from this.
   // when we are using the state and async method we have to use UseEffect.
-  //
 // To catch the error we use Catch to  get Error from API.
-
-
   return (
 <View>
   <Home></Home>
