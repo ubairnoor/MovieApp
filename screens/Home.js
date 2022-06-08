@@ -1,13 +1,16 @@
 import    React,{ useState ,useEffect} from 'react';
-import { Text , View,StyleSheet} from 'react-native';
+import { Text , View,StyleSheet,Dimensions} from 'react-native';
 import {getPopularMovies,getUpcommingMovies} from '../services/services'
 import { SliderBox } from "react-native-image-slider-box";
+
+const dimensions =Dimensions.get('screen');
+
 const Home = () => {
 
     const [ movieImages ,setMovieImages] =  useState([]); 
 
     const [ error, setError] = useState(false);
-    
+    console.log("Dimension",dimensions)
     useEffect(()=>{
       getUpcommingMovies().then((movies) =>{
         const moviesImagesArray = [];
@@ -28,19 +31,20 @@ const Home = () => {
 
     return (
         <View style={styles.sliderContainer}>
-    <SliderBox images={movieImages} />
+    <SliderBox images={movieImages} 
+    sliderBoxHeight={600} 
+    autoplay={true} 
+    circleLoop={true} />
      </View>
 
     );
 }
 const styles = StyleSheet.create({
 sliderContainer:{
-
 display:'flex',
 justifyContent:'center',
 margin:5,
 paddingTop: 5,
-
 }
 
 });
