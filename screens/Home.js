@@ -1,5 +1,5 @@
 import    React,{ useState ,useEffect} from 'react';
-import { Text , View,StyleSheet,Dimensions} from 'react-native';
+import { Text , View,StyleSheet,Dimensions,dotStyle} from 'react-native';
 import {getPopularMovies,getUpcommingMovies} from '../services/services'
 import { SliderBox } from "react-native-image-slider-box";
 
@@ -31,12 +31,17 @@ const Home = () => {
 
     return (
         <View style={styles.sliderContainer}>
+    
     <SliderBox images={movieImages} 
-    sliderBoxHeight={600} 
+    
+    sliderBoxHeight={dimensions.height / 1.5} 
+    
     autoplay={true} 
-    circleLoop={true} />
-     </View>
+    
+    circleLoop={true}
+    dotStyle={styles.sliderStyle} />
 
+     </View>
     );
 }
 const styles = StyleSheet.create({
@@ -45,6 +50,9 @@ display:'flex',
 justifyContent:'center',
 margin:5,
 paddingTop: 5,
+},
+sliderStyle:{
+height:0
 }
 
 });
