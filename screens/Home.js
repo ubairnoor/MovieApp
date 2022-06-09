@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {getPopularMovies, getUpcommingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
-
+import List from '../components/List'
 const dimensions = Dimensions.get('screen');
 
 const Home = () => {
@@ -21,13 +21,13 @@ const Home = () => {
   useEffect(() => {
     getUpcommingMovies()
       .then(movies => {
+
         const moviesImagesArray = [];
         movies.forEach(movie => {
           moviesImagesArray.push(
             'https://image.tmdb.org/t/p/w500' + movie.poster_path,
           );
         });
-
         setMovieImages(moviesImagesArray);
       })
       .catch(err => {
@@ -59,8 +59,10 @@ const Home = () => {
           data={popularMovies}
           horizontal={true}
           renderItem={({item}) => <Text>{item.title}</Text>}>
-      
         </FlatList>
+      </View>
+      <View>
+        <List title="My List Component Title" content={}></List>
       </View>
     </React.Fragment>
   );
