@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {getPopularMovies, getUpcommingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
-import List from '../components/List'
+import List from '../components/List';
 const dimensions = Dimensions.get('screen');
 
 const Home = () => {
@@ -21,7 +21,6 @@ const Home = () => {
   useEffect(() => {
     getUpcommingMovies()
       .then(movies => {
-
         const moviesImagesArray = [];
         movies.forEach(movie => {
           moviesImagesArray.push(
@@ -41,29 +40,23 @@ const Home = () => {
       .catch(err => {
         setError(err);
       });
-  },[]);
+  }, []);
 
   return (
     <React.Fragment>
       <View style={styles.sliderContainer}>
         <SliderBox
           images={movieImages}
-          sliderBoxHeight={dimensions.height / 1.5}
+          sliderBoxHeight={dimensions.height / 1.8}
           autoplay={true}
           circleLoop={true}
           dotStyle={styles.sliderStyle}
         />
       </View>
       <View>
-        <FlatList
-          data={popularMovies}
-          horizontal={true}
-          renderItem={({item}) => <Text>{item.title}</Text>}>
-        </FlatList>
+        <List title="My list Component Title" content={popularMovies}></List>
       </View>
-      <View>
-        <List title="My List Component Title" content={}></List>
-      </View>
+      
     </React.Fragment>
   );
 };
@@ -71,11 +64,10 @@ const styles = StyleSheet.create({
   sliderContainer: {
     display: 'flex',
     justifyContent: 'center',
-    margin: 5,
-    paddingTop: 5,
   },
   sliderStyle: {
     height: 0,
   },
 });
+
 export default Home;
