@@ -47,7 +47,7 @@ const Home = () => {
       <View style={styles.sliderContainer}>
         <SliderBox
           images={movieImages}
-          sliderBoxHeight={dimensions.height / 1.8}
+          sliderBoxHeight={dimensions.height / 2.4}
           autoplay={true}
           circleLoop={true}
           dotStyle={styles.sliderStyle}
@@ -67,6 +67,11 @@ const styles = StyleSheet.create({
   },
   sliderStyle: {
     height: 0,
+  },
+  carousel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
