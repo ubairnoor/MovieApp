@@ -8,7 +8,7 @@ import {
   FlatList,
   ScrollView
 } from 'react-native';
-import {getPopularMovies, getUpcommingMovies} from '../services/services';
+import {getPopularMovies, getUpcommingMovies, getPopularTv} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
 const dimensions = Dimensions.get('screen');
@@ -16,7 +16,7 @@ const dimensions = Dimensions.get('screen');
 const Home = () => {
   const [movieImages, setMovieImages] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-
+const [popularShows, setPopularTv] = useState([])
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,13 @@ const Home = () => {
       });
   }, []);
 
+  getPopularTv().then(shows =>{
+    setPopularTv(shows);
+  })
+  .catch(err =>{
+    setError(err);
+  },[] )
+
   return (
     <React.Fragment>
       <ScrollView>
@@ -56,17 +63,12 @@ const Home = () => {
         />
       </View>
       <View>
-        <List title="My list Component Title" content={popularMovies}></List>
+        <List title="My list Component Title" content={popularMovies}/>
       </View>
       <View>
-        <List title="My list Component Title" content={popularMovies}></List>
+        <List title="Popular Shows" content={popularShows}/>
       </View>
-      <View>
-        <List title="My list Component Title" content={popularMovies}></List>
-      </View>
-      <View>
-        <List title="My list Component Title" content={popularMovies}></List>
-      </View>
+  
       </ScrollView>
 
       

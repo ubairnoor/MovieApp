@@ -15,3 +15,12 @@ export const getUpcommingMovies = async () =>{
     return resp.data.results;
 }
 
+export const getTopRatedMovies =  async() =>{
+    const resp = await axios.get(`${ApiUrl}/movie/top_rated?${ApiKey}`)
+    return resp.data.results
+}
+
+export const getPopularTv =  async() => {
+    const resp = await axios.get(`${ApiUrl}/tv/popular?${ApiKey}`);
+    return resp.data.results
+}
