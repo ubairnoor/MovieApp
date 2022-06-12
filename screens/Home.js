@@ -14,11 +14,11 @@ import List from '../components/List';
 const dimensions = Dimensions.get('screen');
 
 const Home = () => {
-  const [movieImages, setMovieImages] = useState('');
-  const [popularMovies, setPopularMovies] = useState('');
-const [popularShows, setPopularTv] = useState('');
-const [familyShow,setFamilyShow] = useState('')
-const [documentary,setDocumentary] = useState('')
+  const [movieImages, setMovieImages] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+const [popularShows, setPopularTv] = useState([]);
+const [familyShow,setFamilyShow] = useState([])
+const [documentary,setDocumentary] = useState([])
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const [documentary,setDocumentary] = useState('')
         <List title="Popular Shows" content={popularShows}/>
       </View>
       <View>
-        <List title="Documentary" content={documentary}/>
+        <List  title="Documentary" content={documentary}/>
       </View>
       <View>
         <List title="Family Shows" content={familyShow}/>
@@ -99,7 +99,8 @@ const [documentary,setDocumentary] = useState('')
 const styles = StyleSheet.create({
   sliderContainer: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    
   },
   sliderStyle: {
     height: 0,
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
 });
 
 export default Home;

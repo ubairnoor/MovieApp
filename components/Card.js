@@ -8,8 +8,10 @@ const propTypes = {
 }
 
 class Card extends React.PureComponent {
-  state = ({item} = this.props);
+
+ 
   render() {
+    const {item} = this.props;
     return (
       <TouchableOpacity style={styles.container}>
         <Image

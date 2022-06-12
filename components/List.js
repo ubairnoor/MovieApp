@@ -13,7 +13,7 @@ import Card from './Card'
 
 const propTypes = {
   title: PropTypes.string,
-  content:PropTypes.string,
+  content:PropTypes.array,
 }
 class List extends React.PureComponent {
   render() {
@@ -41,10 +41,14 @@ const styles = StyleSheet.create({
 
     },
     text:{
-        fontSize:20,
+        fontSize:30,
         fontWeight:'bold',
+        marginTop:5,
+        marginBottom:10,
+        fontFamily:'Beyond Wonderland'
 
-    }
+    },
+ 
 })
 List.propTypes = propTypes;
 export default List;
