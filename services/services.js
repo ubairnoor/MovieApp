@@ -24,3 +24,7 @@ export const getPopularTv =  async() => {
     const resp = await axios.get(`${ApiUrl}/tv/popular?${ApiKey}`);
     return resp.data.results
 }
+export const getFamilyMovie = async() =>{
+    const resp = await axios.get(`${ApiUrl}/discover/movie?${ApiKey}&with_genres=10751`);
+    return resp.data.results
+}

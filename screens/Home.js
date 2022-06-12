@@ -8,15 +8,16 @@ import {
   FlatList,
   ScrollView
 } from 'react-native';
-import {getPopularMovies, getUpcommingMovies, getPopularTv} from '../services/services';
+import {getPopularMovies, getUpcommingMovies, getPopularTv,getFamilyMovie} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
 const dimensions = Dimensions.get('screen');
 
 const Home = () => {
-  const [movieImages, setMovieImages] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-const [popularShows, setPopularTv] = useState([])
+  const [movieImages, setMovieImages] = useState('');
+  const [popularMovies, setPopularMovies] = useState('');
+const [popularShows, setPopularTv] = useState('');
+const [familyShow,setFamilyShow] = useState('')
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -47,6 +48,12 @@ const [popularShows, setPopularTv] = useState([])
       .catch(err =>{
         setError(err);
       } )
+      //Get Family Show
+      getFamilyMovie().then(FamilyShow => {
+        setFamilyShow(FamilyShow)
+      }).catch(err=>{
+        setError(err)
+      })
 
   }, []);
 
@@ -70,7 +77,9 @@ const [popularShows, setPopularTv] = useState([])
       <View>
         <List title="Popular Shows" content={popularShows}/>
       </View>
-  
+      <View>
+        <List title="Family Shows" content={familyShow}/>
+      </View>
       </ScrollView>
 
       
@@ -86,7 +95,7 @@ const styles = StyleSheet.create({
     height: 0,
   },
   carousel: {
-    flex: 1,
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
       width:100,
       textAlign:'center',
       color:'white',
-      top:10,
+      top:100,
+      backgroundColor:'#121619',
+      borderRadius:10
       
   }
 });
