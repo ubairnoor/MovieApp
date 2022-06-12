@@ -41,14 +41,16 @@ const [popularShows, setPopularTv] = useState([])
       .catch(err => {
         setError(err);
       });
+      getPopularTv().then(shows =>{
+        setPopularTv(shows);
+      })
+      .catch(err =>{
+        setError(err);
+      } )
+
   }, []);
 
-  getPopularTv().then(shows =>{
-    setPopularTv(shows);
-  })
-  .catch(err =>{
-    setError(err);
-  },[] )
+
 
   return (
     <React.Fragment>
