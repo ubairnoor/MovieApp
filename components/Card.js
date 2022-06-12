@@ -1,6 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Image,Text} from 'react-native';
-const placeholderimage = require('../assets/Images/placeholder.png')
+import PropTypes from 'prop-types';
+const placeholderimage = require('../assets/Images/placeholder.png');
+
+const propTypes = {
+  item:PropTypes.object
+}
+
 class Card extends React.PureComponent {
   state = ({item} = this.props);
   render() {
@@ -40,5 +46,7 @@ const styles = StyleSheet.create({
       
   }
 });
+
+Card.propTypes = propTypes;
 
 export default Card;

@@ -17,7 +17,7 @@ const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   const [error, setError] = useState(false);
-  console.log('Dimension', dimensions);
+
   useEffect(() => {
     getUpcommingMovies()
       .then(movies => {

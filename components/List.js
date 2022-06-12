@@ -7,7 +7,14 @@ import {
   dotStyle,
   FlatList,
 } from 'react-native';
+import PropTypes from 'prop-types';
+
 import Card from './Card'
+
+const propTypes = {
+  title: PropTypes.string,
+  content:PropTypes.string,
+}
 class List extends React.PureComponent {
   render() {
     const {title, content} = this.props;
@@ -39,5 +46,5 @@ const styles = StyleSheet.create({
 
     }
 })
-
+List.propTypes = propTypes;
 export default List;
