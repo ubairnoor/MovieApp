@@ -6,6 +6,7 @@ import {
   Dimensions,
   dotStyle,
   FlatList,
+  ScrollView
 } from 'react-native';
 import {getPopularMovies, getUpcommingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
@@ -44,9 +45,10 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      <ScrollView>
       <View style={styles.sliderContainer}>
         <SliderBox
-          images={movieImages}
+          images={movieImages} 
           sliderBoxHeight={dimensions.height / 2.4}
           autoplay={true}
           circleLoop={true}
@@ -56,6 +58,17 @@ const Home = () => {
       <View>
         <List title="My list Component Title" content={popularMovies}></List>
       </View>
+      <View>
+        <List title="My list Component Title" content={popularMovies}></List>
+      </View>
+      <View>
+        <List title="My list Component Title" content={popularMovies}></List>
+      </View>
+      <View>
+        <List title="My list Component Title" content={popularMovies}></List>
+      </View>
+      </ScrollView>
+
       
     </React.Fragment>
   );
