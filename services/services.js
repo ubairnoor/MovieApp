@@ -28,3 +28,10 @@ export const getFamilyMovie = async() =>{
     const resp = await axios.get(`${ApiUrl}/discover/movie?${ApiKey}&with_genres=10751`);
     return resp.data.results
 }
+
+
+export const getDocs = async() =>{
+
+    const resp =await axios.get(`${ApiUrl}/discover/movie?${ApiKey}&with_genres=99`);
+    return resp.data.results
+}

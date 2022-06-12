@@ -8,7 +8,7 @@ import {
   FlatList,
   ScrollView
 } from 'react-native';
-import {getPopularMovies, getUpcommingMovies, getPopularTv,getFamilyMovie} from '../services/services';
+import {getPopularMovies, getUpcommingMovies, getPopularTv,getFamilyMovie,getDocs} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
 const dimensions = Dimensions.get('screen');
@@ -18,6 +18,7 @@ const Home = () => {
   const [popularMovies, setPopularMovies] = useState('');
 const [popularShows, setPopularTv] = useState('');
 const [familyShow,setFamilyShow] = useState('')
+const [documentary,setDocumentary] = useState('')
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -54,6 +55,11 @@ const [familyShow,setFamilyShow] = useState('')
       }).catch(err=>{
         setError(err)
       })
+      getDocs().then( doc =>{
+        setDocumentary(doc)
+      }).catch(err =>{
+        setError(err)
+      })
 
   }, []);
 
@@ -72,14 +78,18 @@ const [familyShow,setFamilyShow] = useState('')
         />
       </View>
       <View>
-        <List title="My list Component Title" content={popularMovies}/>
+        <List title="Popular Movies" content={popularMovies}/>
       </View>
       <View>
         <List title="Popular Shows" content={popularShows}/>
       </View>
       <View>
+        <List title="Documentary" content={documentary}/>
+      </View>
+      <View>
         <List title="Family Shows" content={familyShow}/>
       </View>
+      
       </ScrollView>
 
       
@@ -89,7 +99,7 @@ const [familyShow,setFamilyShow] = useState('')
 const styles = StyleSheet.create({
   sliderContainer: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   sliderStyle: {
     height: 0,
