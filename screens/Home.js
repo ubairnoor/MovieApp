@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      {loaded && error && ( <ScrollView>
+      {loaded && !error && ( <ScrollView>
         <View style={styles.sliderContainer}>
           <SliderBox
             images={UpcomingMovies}
@@ -92,7 +92,7 @@ const Home = () => {
       )}
 
       {!loaded && <ActivityIndicator size="large" color="#23272A"/>}
-      { !error && <Error/> }
+      { error && <Error/> }
       
     </React.Fragment>
   );
