@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, View} from 'react-native'
 import Home from './screens/Home'
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator(); 
 const App = () =>{  
   // GetPopularMovie() is returning a promise and we use .then() callback function get Get Data.
   // BUt we face issue Movie Title is not Updated.Because we are using Normal Varraible.
@@ -13,9 +15,14 @@ const App = () =>{
   // when we are using the state and async method we have to use UseEffect.
 // To catch the error we use Catch to  get Error from API.
   return (
-<View>
-  <Home></Home>
-</View>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={Home} />
+ 
+    </Stack.Navigator>
+  </NavigationContainer>
+ 
   )
 }
 

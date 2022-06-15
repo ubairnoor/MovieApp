@@ -71,7 +71,7 @@ const Home = () => {
         <View style={styles.sliderContainer}>
           <SliderBox
             images={UpcomingMovies}
-            sliderBoxHeight={dimensions.height / 2.4}
+            sliderB oxHeight={dimensions.height / 2.4}
             autoplay={true}
             circleLoop={true}
             dotStyle={styles.sliderStyle}
