@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Text,View,StyleSheet,Dimensions,dotStyle,FlatList,ScrollView,
 ActivityIndicator
 } from 'react-native';
+import react from 'react';
 import {
   getPopularMovies,
   getUpcommingMovies,
@@ -57,15 +58,16 @@ const Home = () => {
     }
     ).catch(()=>{
       setError(true);
-    }).finally(()=>{
-      setLoaded(true)
+    }).finally(() => {
+      setLoaded(true);
     });
   
   }, []);
 
   return (
-    <React.Fragment>
-      {loaded && !error && ( <ScrollView>
+    <react.Fragment>
+      {loaded && !error && ( 
+      <ScrollView>
         <View style={styles.sliderContainer}>
           <SliderBox
             images={UpcomingMovies}
@@ -94,7 +96,7 @@ const Home = () => {
       {!loaded && <ActivityIndicator size="large" color="#23272A"/>}
       { error && <Error/> }
       
-    </React.Fragment>
+    </react.Fragment>
   );
 
 };
