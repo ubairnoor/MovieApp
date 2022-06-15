@@ -7,6 +7,7 @@ import {
   dotStyle,
   FlatList,
   ScrollView,
+  ActivityIndicator
 } from 'react-native';
 import {
   getPopularMovies,
@@ -26,6 +27,7 @@ const Home = () => {
   const [familyShow, setFamilyShow] = useState([]);
   const [documentary, setDocumentary] = useState([]);
   const [error, setError] = useState(false);
+  const [ loaded,setLoaded] = useState(false);
 
   const getData = () => {
     return Promise.all([
@@ -57,10 +59,15 @@ const Home = () => {
       setPopularTv(popularShows);
       setFamilyShow(familyShow);
       setDocumentary(documentary);
+      
     }
     ).catch(err=>{
       setError(err);
-    });
+    }).finally(()=>{
+      setLoaded(true)
+    }
+
+    );
     // getUpcommingMovies()
     //   .then(movies => {
     //     const moviesImagesArray = [];
@@ -108,7 +115,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <ScrollView>
+      {loaded && ( <ScrollView>
         <View style={styles.sliderContainer}>
           <SliderBox
             images={UpcomingMovies}
@@ -130,7 +137,14 @@ const Home = () => {
         <View>
           <List title="Family Shows" content={familyShow} />
         </View>
+        
       </ScrollView>
+      )}
+      <View  >
+      {!loaded && <ActivityIndicator size="large" color="#23272A"/>}
+    
+      </View>
+      
     </React.Fragment>
   );
 };
@@ -147,6 +161,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
+
 });
 
 export default Home;
