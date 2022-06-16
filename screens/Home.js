@@ -15,7 +15,7 @@ import List from '../components/List';
 import Error from '../components/Error';
 const dimensions = Dimensions.get('screen');
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [UpcomingMovies, setUpcomingMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [popularShows, setPopularTv] = useState([]);
@@ -68,7 +68,8 @@ const Home = () => {
     <react.Fragment>
       {loaded && !error && ( 
       <ScrollView>
-        <View style={styles.sliderContainer}>
+      {UpcomingMovies && (
+          <View style={styles.sliderContainer}>
           <SliderBox
             images={UpcomingMovies}
             sliderB oxHeight={dimensions.height / 2.4}
@@ -77,19 +78,38 @@ const Home = () => {
             dotStyle={styles.sliderStyle}
           />
         </View>
-        <View>
-          <List title="Popular Movies" content={popularMovies} />
+      )
+
+      }
+       {
+        popularMovies && (
+          <View>
+          <List navigation ={navigation} title="Popular Movies" content={popularMovies} />
         </View>
-        <View>
+        )
+       }
+      {
+        popularShows && (
+          <View>
           <List title="Popular Shows" content={popularShows} />
         </View>
-        <View>
+        )
+      }
+        {
+          documentary && (
+            <View>
           <List title="Documentary" content={documentary} />
         </View>
-        <View>
-          <List title="Family Shows" content={familyShow} />
+          )
+        }
+          {
+          familyShow && (
+            <View>
+          <List title="Family Show" content={familyShow} />
         </View>
-        
+          )
+        }
+    
       </ScrollView>
       )}
 
