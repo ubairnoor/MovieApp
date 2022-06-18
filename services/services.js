@@ -35,3 +35,10 @@ export const getDocs = async() =>{
     const resp =await axios.get(`${ApiUrl}/discover/movie?${ApiKey}&with_genres=99`);
     return resp.data.results
 }
+
+
+export const getMovie = async(movie_id)=>{
+
+    const resp = await axios.get(`${ApiUrl}/movie/${movie_id}?${ApiKey}`);
+    return resp.data;
+}

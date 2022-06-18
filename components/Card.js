@@ -20,8 +20,8 @@ class Card extends React.PureComponent {
         resizeMode='cover'
           style={styles.image}
           source={
-              item.poster_path ?
-            {  uri: 'https://image.tmdb.org/t/p/w500' + item.poster_path}: placeholderimage}
+            item.poster_path?
+          { uri: 'https://image.tmdb.org/t/p/w500' + item.poster_path}: placeholderimage}
         />
         {item.poster_path && <Text style={styles.movieName}>{item.title}</Text>}
       </TouchableOpacity>
