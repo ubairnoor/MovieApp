@@ -37,17 +37,12 @@ const Detail = ({route, navigation}) => {
                 })}
             </View>
            )}
-       <StarRating maxStars={5} rating={movieDetail.vote_average/2}/>
-           <Text>{movieDetail.vote_average}</Text>
-           <Text>{movieDetail.vote_count}</Text>
-           <Text>{movieDetail.tagline}</Text>
-           <Text>{movieDetail.release_date}</Text>
-           <Text>{movieDetail.runtime}</Text>
+     
+        <StarRating fullStarColor={'gold'} starSize={20}maxStars={5} rating={movieDetail.vote_average/2}/>
+      <Text style={styles.overview}>{movieDetail.overview}</Text>
+     <Text style={styles.Rdate}>{"Release Date: "+movieDetail.release_date}</Text>
+        </View>
        
-
-
-
-          </View>
         </ScrollView>
       )}
       {!loaded && <ActivityIndicator  
@@ -71,7 +66,7 @@ const styles = StyleSheet.create({
  container:{
     display:'flex',
     justifyContent:"center",
-    alignContent:'center'
+    alignItems: 'center',
  },
  text:{
     fontSize:19,
@@ -86,21 +81,28 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:"center",
     alignContent:'center',
-    backgroundColor:'#B25068',
-
-
-
   
-    
  },
  genre:{
-    color:'#fff',
+    color:'#4C3A51',
     marginRight:10,
     padding:10,
     fontWeight:'bold',
     fontSize:15
-    
-
+ },
+ ratingContainer:{
+  margin:10,
+  justifyContent:"center",
+  alignContent:'center',
+ },
+ Rdate:{
+  fontWeight:'bold',
+  color:'#B25068'
+ },
+ overview:{
+  padding:15,
+  color:'#3C2C3E'
+  
  }
 });
 
