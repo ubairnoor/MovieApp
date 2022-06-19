@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, Text, Image, StyleSheet,Dimensions, ActivityIndicator} from 'react-native';
+import {ScrollView, Text, Image, StyleSheet,View,Dimensions, ActivityIndicator} from 'react-native';
 import {getMovie} from '../services/services';
 const placeholderimage = require('../assets/Images/placeholder.png');
 const height = Dimensions.get('screen').height;
@@ -17,7 +17,7 @@ const Detail = ({route, navigation}) => {
   return (
     <React.Fragment>
       {loaded && (
-        <ScrollView>
+        <ScrollView >
           <Image
             resizeMode="cover"
             style={styles.image}
@@ -27,6 +27,10 @@ const Detail = ({route, navigation}) => {
                   } : placeholderimage
             }
           />
+          <View style={styles.container}>
+          <Text style={styles.text}>{movieDetail.title}</Text>
+
+          </View>
         </ScrollView>
       )}
       {!loaded && <ActivityIndicator  
@@ -39,13 +43,30 @@ const Detail = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   image: {
-    height: height/1.5,
+    height: height/2.5,
+    
   },
   activityIndicator: {
     display:'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: 80
+ },
+ container:{
+    display:'flex',
+    justifyContent:"center",
+    alignContent:'center'
+ },
+ text:{
+    fontSize:19,
+    fontWeight:'bold',
+    
+    marginBottom:10,
+  padding:10,
+    color:'#4C3A51',
+   
+    backgroundColor:'#E7AB79'
+    
  }
 });
 
