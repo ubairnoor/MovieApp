@@ -37,8 +37,10 @@ export const getDocs = async() =>{
 }
 
 
-export const getMovie = async(movie_id)=>{
+export const getMovie = async id=>{
 
-    const resp = await axios.get(`${ApiUrl}/movie/${movie_id}?${ApiKey}`);
+    const resp = await axios.get(`${ApiUrl}/movie/${id}?${ApiKey}`);
+    console.log("_____======",resp.data);
+
     return resp.data;
 }
