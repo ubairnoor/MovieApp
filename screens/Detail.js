@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {ScrollView, Text, Image, StyleSheet,View,Dimensions, ActivityIndicator} from 'react-native';
 import {getMovie} from '../services/services';
 import StarRating from 'react-native-star-rating';
+import dateFormat from "dateformat";
 const placeholderimage = require('../assets/Images/placeholder.png');
 const height = Dimensions.get('screen').height;
 
@@ -40,7 +41,7 @@ const Detail = ({route, navigation}) => {
      
         <StarRating fullStarColor={'gold'} starSize={20}maxStars={5} rating={movieDetail.vote_average/2}/>
       <Text style={styles.overview}>{movieDetail.overview}</Text>
-     <Text style={styles.Rdate}>{"Release Date: "+movieDetail.release_date}</Text>
+     <Text style={styles.Rdate}>{"Release Date: "+ dateFormat(movieDetail.release_date,"dddd, mmmm dS, yyyy")}</Text>
         </View>
        
         </ScrollView>
