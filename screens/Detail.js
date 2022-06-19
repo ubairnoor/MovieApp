@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, Text, Image, StyleSheet,View,Dimensions, ActivityIndicator} from 'react-native';
 import {getMovie} from '../services/services';
+import StarRating from 'react-native-star-rating';
 const placeholderimage = require('../assets/Images/placeholder.png');
 const height = Dimensions.get('screen').height;
 
@@ -36,6 +37,15 @@ const Detail = ({route, navigation}) => {
                 })}
             </View>
            )}
+       <StarRating maxStars={5} rating={movieDetail.vote_average/2}/>
+           <Text>{movieDetail.vote_average}</Text>
+           <Text>{movieDetail.vote_count}</Text>
+           <Text>{movieDetail.tagline}</Text>
+           <Text>{movieDetail.release_date}</Text>
+           <Text>{movieDetail.runtime}</Text>
+       
+
+
 
           </View>
         </ScrollView>
