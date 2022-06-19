@@ -29,6 +29,13 @@ const Detail = ({route, navigation}) => {
           />
           <View style={styles.container}>
           <Text style={styles.text}>{movieDetail.title}</Text>
+          {movieDetail.genres && (
+            <View style={styles.genresContainer}> 
+                {movieDetail.genres.map(genre => {
+                    return <Text style={styles.genre} key={genre.id}>{genre.name}</Text>
+                })}
+            </View>
+           )}
 
           </View>
         </ScrollView>
@@ -44,7 +51,6 @@ const Detail = ({route, navigation}) => {
 const styles = StyleSheet.create({
   image: {
     height: height/2.5,
-    
   },
   activityIndicator: {
     display:'flex',
@@ -60,13 +66,31 @@ const styles = StyleSheet.create({
  text:{
     fontSize:19,
     fontWeight:'bold',
-    
-    marginBottom:10,
+  
   padding:10,
     color:'#4C3A51',
-   
-    backgroundColor:'#E7AB79'
+
     
+ },
+ genresContainer:{
+    flexDirection:'row',
+    justifyContent:"center",
+    alignContent:'center',
+    backgroundColor:'#B25068',
+
+
+
+  
+    
+ },
+ genre:{
+    color:'#fff',
+    marginRight:10,
+    padding:10,
+    fontWeight:'bold',
+    fontSize:15
+    
+
  }
 });
 
