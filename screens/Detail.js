@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, Text, Image, StyleSheet,View,Dimensions, ActivityIndicator} from 'react-native';
+import PlayButton from '../components/PlayButton';
 import {getMovie} from '../services/services';
 import StarRating from 'react-native-star-rating';
 import dateFormat from "dateformat";
@@ -30,6 +31,8 @@ const Detail = ({route, navigation}) => {
             }
           />
           <View style={styles.container}>
+          <PlayButton/>
+
           <Text style={styles.text}>{movieDetail.title}</Text>
           {movieDetail.genres && (
             <View style={styles.genresContainer}> 
@@ -38,6 +41,7 @@ const Detail = ({route, navigation}) => {
                 })}
             </View>
            )}
+         
      
         <StarRating fullStarColor={'gold'} starSize={20}maxStars={5} rating={movieDetail.vote_average/2}/>
       <Text style={styles.overview}>{movieDetail.overview}</Text>
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
   margin:10,
   justifyContent:"center",
   alignContent:'center',
- },
+ },  
  Rdate:{
   fontWeight:'bold',
   color:'#B25068'
