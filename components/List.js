@@ -41,12 +41,10 @@ const styles = StyleSheet.create({
 
     },
     text:{
-        fontSize:30,
+        fontSize:15,
+        padding:10,
         fontWeight:'bold',
-        marginTop:5,
-        marginBottom:10,
-        fontFamily:'Beyond Wonderland'
-
+        color:"#4C3A51"
     },
  
 })

@@ -8,8 +8,6 @@ const propTypes = {
 }
 
 class Card extends React.PureComponent {
-
- 
   render() {
     const {navigation,item} = this.props;
     return (
@@ -47,8 +45,9 @@ const styles = StyleSheet.create({
       textAlign:'center',
       color:'white',
       top:100,
-      backgroundColor:'#121619',
-      borderRadius:10
+      backgroundColor:'#B25068',
+      borderRadius:10,
+      padding:2
       
   }
 });
