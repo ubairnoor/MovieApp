@@ -6,17 +6,17 @@ class PlayButton extends React.PureComponent {
     render() {
         return (
         <Pressable style={styles.button}>
-            <Icon name={'caret-forward-outline'} size={40} color={'#4C3A51'}/>
+            <Icon name={'caret-forward-outline'} size={30} color={'#E7AB79'}/>
         </Pressable>
         );
     }
 }
 const styles = StyleSheet.create({
     button:{
-        backgroundColor:"#E7AB79",
+        backgroundColor:"#4C3A51",
         alignContent:'center',
         borderRadius:50,
-        width:60,
+        width:50,
         padding:10,
 
     }
