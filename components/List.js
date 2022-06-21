@@ -3,8 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  Dimensions,
-  dotStyle,
   FlatList,
 } from 'react-native';
 import PropTypes from 'prop-types';
