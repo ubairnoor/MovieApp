@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  ScrollView,
-  Text,
-  Image,
-  StyleSheet,
-  View,
-  Dimensions,
-  ActivityIndicator,
+import { ScrollView, Text, Image,StyleSheet, View, Dimensions, ActivityIndicator,Modal,Pressable,
 } from 'react-native';
 import PlayButton from '../components/PlayButton';
 import {getMovie} from '../services/services';
@@ -15,65 +8,80 @@ import dateFormat from 'dateformat';
 const placeholderimage = require('../assets/Images/placeholder.png');
 const height = Dimensions.get('screen').height;
 
-const Detail = ({route, navigation}) => {
+const Detail = ({route}) => {
   const movieId = route.params.movieId;
   const [movieDetail, setMovieDetail] = useState();
   const [loaded, setLoaded] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     getMovie(movieId).then(movieData => {
       setMovieDetail(movieData);
       setLoaded(true);
     });
   }, [movieId]);
+
+  const videoShown = () => {
+    setModalVisible(!modalVisible);
+  };
   return (
     <React.Fragment>
       {loaded && (
-        <ScrollView>
-          <Image
-            resizeMode="cover"
-            style={styles.image}
-            source={
-              movieDetail.poster_path
-                ? {
-                    uri:
-                      'https://image.tmdb.org/t/p/w500' +
-                      movieDetail.poster_path,
-                  }
-                : placeholderimage
-            }
-          />
-          <View style={styles.container}>
-            <View style={styles.PlayButton}>
-              <PlayButton />
-            </View>
-
-            <Text style={styles.text}>{movieDetail.title}</Text>
-            {movieDetail.genres && (
-              <View style={styles.genresContainer}>
-                {movieDetail.genres.map(genre => {
-                  return (
-                    <Text style={styles.genre} key={genre.id}>
-                      {genre.name}
-                    </Text>
-                  );
-                })}
-              </View>
-            )}
-
-            <StarRating
-              fullStarColor={'gold'}
-              starSize={20}
-              maxStars={5}
-              rating={movieDetail.vote_average / 2}
+        <View>
+          <ScrollView>
+            <Image
+              resizeMode="cover"
+              style={styles.image}
+              source={
+                movieDetail.poster_path
+                  ? {
+                      uri:
+                        'https://image.tmdb.org/t/p/w500' +
+                        movieDetail.poster_path,
+                    }
+                  : placeholderimage
+              }
             />
-            <Text style={styles.overview}>{movieDetail.overview}</Text>
-            <Text style={styles.Rdate}>
-              {'Release Date: ' +
-                dateFormat(movieDetail.release_date, 'dddd, mmmm dS, yyyy')}
-            </Text>
-          </View>
-        </ScrollView>
-      )}
+            <View style={styles.container}>
+              <View style={styles.PlayButton}>
+                <PlayButton handlePress={videoShown} />
+              </View>
+
+              <Text style={styles.text}>{movieDetail.title}</Text>
+              {movieDetail.genres && (
+                <View style={styles.genresContainer}>
+                  {movieDetail.genres.map(genre => {
+                    return (
+                      <Text style={styles.genre} key={genre.id}>
+                        {genre.name}
+                      </Text>
+                    );
+                  })}
+                </View>
+              )}
+
+              <StarRating
+                fullStarColor={'gold'}
+                starSize={20}
+                maxStars={5}
+                rating={movieDetail.vote_average / 2}
+              />
+              <Text style={styles.overview}>{movieDetail.overview}</Text>
+              <Text style={styles.Rdate}>
+                {'Release Date: ' +
+                  dateFormat(movieDetail.release_date, 'dddd, mmmm dS, yyyy')}
+              </Text>
+            </View>
+          </ScrollView>
+          <Modal   animationType="slide" visible={modalVisible}>
+           <View style={styles.videoModal}>
+           <Pressable onPress={() => videoShown()}>
+              <Text> {'Hide Modal'} </Text>
+            </Pressable>
+           </View>
+          </Modal>
+        </View> 
+      )} 
       {!loaded && (
         <ActivityIndicator
           color="red"
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 19,
     fontWeight: 'bold',
-marginTop:25,
+    marginTop: 25,
     padding: 10,
     color: '#4C3A51',
   },
@@ -137,6 +145,11 @@ marginTop:25,
     top: -25,
     right: 20,
   },
+  videoModal:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });
 
 export default Detail;
